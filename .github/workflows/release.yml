@@ -1,0 +1,53 @@
+name: Publish Release
+
+on:
+  push:
+    tags:
+    - 'v*' # Push events to matching v*, i.e. v1.0, v20.15.10
+
+jobs:
+  build:
+    runs-on: ubuntu-latest
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v2
+        with:
+          submodules: recursive
+        
+      - name: Install Go
+        uses: actions/setup-go@v2
+        with:
+          go-version: '1.17.3'
+
+      - name: Install Dependecies
+        run: sudo apt install -y gcc nasm make
+
+      - name: Build
+        run: make
+
+      - name: Smoketest
+        run: bash -c "echo y | ./bin/injector ./bin/shellcode.bin ./bin/basic AAAA | grep "from_injector""
+
+      - name: Create Archive
+        run: cd ./bin && zip commandline_cloaking.zip *
+
+      - name: Create Release
+        id: create_release
+        uses: actions/create-release@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          tag_name: ${{ github.ref }}
+          release_name: Release ${{ github.ref }}
+          draft: false
+          prerelease: false
+
+      - name: Upload Builds
+        uses: actions/upload-release-asset@v1
+        env:
+          GITHUB_TOKEN: ${{ secrets.GITHUB_TOKEN }}
+        with:
+          upload_url: ${{ steps.create_release.outputs.upload_url }}
+          asset_path: ./bin/commandline_cloaking.zip
+          asset_name: commandline_cloaking.zip
+          asset_content_type: application/octet-stream
