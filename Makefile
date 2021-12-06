@@ -1,26 +1,30 @@
 .PHONY: all
-all: basic_c basic_go dodgy_c dodgy_go preload_go preload_c loader_go injector
+all: basic_c basic dodgy_c dodgy preload_c preload loader_py loader_go injector
 
 basic_c: clean
 	gcc -Wall -o ./bin/basic_c ./basic/c/basic.c
 
-basic_go: clean
+basic: clean
 	go build -o ./bin/basic ./basic/go
 
 dodgy_c: clean
 	gcc -Wall -o ./bin/dodgy_c ./dodgy/c/dodgy.c
 
-dodgy_go: clean
+dodgy: clean
 	go build -o ./bin/dodgy ./dodgy/go
 
-preload_go: clean
+preload: clean
 	go build -buildmode=c-shared -o ./bin/preload.so ./preload/go
+	rm -f ./bin/preload.h
 
 preload_c: clean
 	gcc -Wall -fPIC -shared -o ./bin/preload_c.so ./preload/c/preload.c -ldl
 
 loader_go: clean
 	go build -o ./bin/loader ./loader/go
+
+loader_py: clean
+	cp ./loader/python/loader.py ./bin
 
 injector: clean
 	$(shell \
