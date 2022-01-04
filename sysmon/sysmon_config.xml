@@ -1,0 +1,8 @@
+<Sysmon schemaversion="4.70">
+  <EventFiltering>
+    <!-- Event ID 1 == ProcessCreate. Log all newly created processes -->
+    <RuleGroup name="" groupRelation="or">
+      <ProcessCreate onmatch="exclude"/>
+    </RuleGroup>
+  </EventFiltering>
+</Sysmon>
