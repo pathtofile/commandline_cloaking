@@ -5,20 +5,30 @@ This code accompanies my blog [Sysmon for Linux and Commandline Cloaking](https:
 
 
 # Prerequisites
-- Go
 - Make
-- NASM
+- Go
 - GCC
-- [Sysmon for Linux](https://github.com/Sysinternals/SysmonForLinux/blob/main/INSTALL.md)
+- NASM
+- [Nim](https://nim-lang.org/) (optional)
+- [Sysmon for Linux](https://github.com/Sysinternals/SysmonForLinux/blob/main/INSTALL.md) (optional)
 
 # Building
 Run `make` to build all projects:
 ```bash
 git clone https://github.com/pathtofile/commandline_cloaking.git
 cd commandline_cloaking
+
+# To build all examples except Nim:
 make
+# To build just the C examples:
+make all_c
+# To build just the Go examples:
+make all_go
+# To build just the Nim examples:
+make all_nim
 ```
-Binaries will be put in the `dst` folder.
+
+Binaries will be put in the `bin` folder.
 See below for descriptions and how to run each project.
 
 # Projects
