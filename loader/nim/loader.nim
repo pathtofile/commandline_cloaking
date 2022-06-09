@@ -1,7 +1,5 @@
 import os
 import strformat
-import posix
-import osproc
 
 proc memfd_create(name: cstring, flags: cuint): cint {.importc, header: "sys/mman.h".}
 proc execve(pathname: cstring, argv: cstringArray, envp: cstringArray): cint {.importc: "execve", header: "stdlib.h".}

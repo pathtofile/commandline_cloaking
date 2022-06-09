@@ -26,12 +26,12 @@ proc main(argc: int, argv: cstringArray, envp: cstringArray): int {.cdecl, expor
         echo(fmt"  argv[{i}] {argv[i]}")
 
     # Double-fork to make parent pid look like PID 1
-    var child_pid = fork()
-    if child_pid != 0:
+    var childPID = fork()
+    if childPID != 0:
         # First parent, exit
         return 0
-    child_pid = fork()
-    if child_pid != 0:
+    childPID = fork()
+    if childPID != 0:
         # Second parent, exit
         return 0
 

@@ -2,7 +2,7 @@
 all: all_go all_c
 all_go: basic_go dodgy_go preload_go loader_go injector_go
 all_c: basic_c dodgy_c preload_c
-all_nim: basic_nim dodgy_nim loader_nim
+all_nim: basic_nim dodgy_nim loader_nim preload_nim
 
 basic_c:
 	gcc -Wall -o ./bin/basic_c ./basic/c/basic.c
@@ -29,6 +29,9 @@ preload_go:
 
 preload_c:
 	gcc -Wall -fPIC -shared -o ./bin/preload_c.so ./preload/c/preload.c -ldl
+
+preload_nim:
+	nim compile --app:lib --out:./bin/preload_nim.so ./preload/nim/preload.nim
 
 loader_go:
 	go build -o ./bin/loader ./loader/go
