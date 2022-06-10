@@ -28,7 +28,7 @@ jobs:
         run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -yes
 
       - name: Build
-        run: PATH=/home/runner/.nimble/bin:$PATH sh -c "make && make_nim"
+        run: PATH=/home/runner/.nimble/bin:$PATH sh -c "make all && make all_nim"
 
       - name: Smoketest
         run: bash -c "echo y | ./bin/injector ./bin/shellcode.bin ./bin/basic AAAA | grep "from_injector""
