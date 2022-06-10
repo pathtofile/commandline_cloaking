@@ -1,8 +1,8 @@
 # Commandline Cloaking
 This is a collection of projects to demonstrate how different commandline
-cloaking techniques appear to [Sysmon for Linux](https://github.com/Sysinternals/SysmonForLinux/).
-This code accompanies my blog [Sysmon for Linux and Commandline Cloaking](https://blog.tofile.dev/2022/01/04/sysmonlinux.html).
+cloaking techniques in various languages.
 
+This code accompanies my blog [Sysmon for Linux and Commandline Cloaking](https://blog.tofile.dev/2022/01/04/sysmonlinux.html).
 
 # Prerequisites
 - Make

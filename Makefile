@@ -1,7 +1,7 @@
 .PHONY: all
 all: all_go all_c
 all_go: basic_go dodgy_go preload_go loader_go injector_go
-all_c: basic_c dodgy_c preload_c
+all_c: basic_c dodgy_c preload_c loader_c
 all_nim: basic_nim dodgy_nim loader_nim preload_nim
 
 basic_c:
@@ -35,6 +35,9 @@ preload_nim:
 
 loader_go:
 	go build -o ./bin/loader ./loader/go
+
+loader_c:
+	gcc -Wall -o ./bin/loader_c ./loader/c/loader.c
 
 loader_py:
 	cp ./loader/python/loader.py ./bin
