@@ -23,9 +23,12 @@ jobs:
 
       - name: Install Dependecies
         run: sudo apt install -y gcc nasm make
+        
+      - name: Install Nim
+        run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -yes
 
       - name: Build
-        run: make
+        run: make && make_nim
 
       - name: Smoketest
         run: bash -c "echo y | ./bin/injector ./bin/shellcode.bin ./bin/basic AAAA | grep "from_injector""
