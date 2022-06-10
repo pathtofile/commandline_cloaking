@@ -21,12 +21,15 @@ jobs:
 
       - name: Install Dependecies
         run: sudo apt install -y gcc nasm make
+        
+      - name: Install Nim
+        run: curl https://nim-lang.org/choosenim/init.sh -sSf | sh -s -- -yes
 
       - name: Build
-        run: make
+        run: PATH=/home/runner/.nimble/bin:$PATH sh -c "make && make all_nim"
 
       - name: Smoketest
-        run: bash -c "echo y | ./bin/injector ./bin/shellcode.bin ./bin/basic AAAA | grep "from_injector""
+        run: bash -c "./bin/injector ./bin/shellcode.bin ./bin/basic_c AAAA | grep "from_injector""
 
       - name: Create Archive
         run: cd ./bin && zip commandline_cloaking.zip *
