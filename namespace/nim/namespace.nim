@@ -14,8 +14,9 @@ proc strerror(errnum: cint): cstring {.importc, header: "string.h".}
 const tmp_dir = "namespace_tmp"
 
 proc main() =
-    if paramCount() < 1 or not fileExists(paramStr(1)):
-        echo("Usage: loader.py <binary> [arguments]")
+    if paramCount() < 1 or not fileExists(getEnv("BIN_PATH")):
+        echo("Usage: namespace_nim [arguments]")
+        echo("Path to binary read from the BIN_PATH environment variable")
         quit(1)
 
     if getuid() != 0:
@@ -23,7 +24,7 @@ proc main() =
         quit(1)
 
     # Create temp dir
-    let bin_path = absolutePath(paramStr(1))
+    let bin_path = absolutePath(getEnv("BIN_PATH"))
     let old_cwd = getCurrentDir()
     removeDir(tmp_dir)
     createDir(tmp_dir)
@@ -62,7 +63,7 @@ proc main() =
         # Build argv array
         var args: seq[string]
         args.add("from_namespace")
-        for i in 2..paramCount():
+        for i in 1..paramCount():
             args.add(paramStr(i))
         var argv = alloccstringArray(args)
         err = execve("/bin/bash", argv, nil)
