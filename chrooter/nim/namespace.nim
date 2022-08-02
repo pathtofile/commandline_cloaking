@@ -11,11 +11,11 @@ proc getuid(): Uid {.importc, header: "unistd.h".}
 var errno {.importc: "errno", header: "errno.h".}: cint
 proc strerror(errnum: cint): cstring {.importc, header: "string.h".}
 
-const tmp_dir = "namespace_tmp"
+const tmp_dir = "fake_root"
 
 proc main() =
     if paramCount() < 1 or not fileExists(getEnv("BIN_PATH")):
-        echo("Usage: namespace_nim [arguments]")
+        echo("Usage: chrooter_nim [arguments]")
         echo("Path to binary read from the BIN_PATH environment variable")
         quit(1)
 
@@ -62,7 +62,7 @@ proc main() =
 
         # Build argv array
         var args: seq[string]
-        args.add("from_namespace")
+        args.add("from_chrooter")
         for i in 1..paramCount():
             args.add(paramStr(i))
         var argv = alloccstringArray(args)

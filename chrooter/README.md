@@ -1,4 +1,4 @@
-# Namespace
+# Chrooter
 This code uses [chroot](https://linux.die.net/man/2/chroot) to mask a binaries real path.
 
 Chroot is a key element of Linux containers that changes the root directory of the calling process.
@@ -24,11 +24,11 @@ copy all required libraries into the `chroot` subfolders.
 
 Example usage:
 ```bash
-root@machine$> BIN_PATH=./basic_nim_static ./namespace_nim AAAA
+root@machine$> BIN_PATH=./basic_nim_static ./chrooter_nim AAAA
   PID     21836
   PPID    21783
   argc    2
-  argv[0] from_namespace
+  argv[0] from_chrooter
   argv[1] AAAA
   Sleeping for 60 seconds so you can lookup the PID
 ```
@@ -41,7 +41,7 @@ root@machine$> BIN_PATH=./basic_nim_static ./namespace_nim AAAA
       "exec_id": "OjI5Mzc2MTgxOTk3NTcxMzoyMTgzNg==",
       "pid": 21836,
       "uid": 0,
-      "cwd": "/path/to/namespace_tmp/",
+      "cwd": "/path/to/fake_root/",
       "binary": "/bin/bash",
       "arguments": "AAAA",
       "flags": "execve",
@@ -55,7 +55,7 @@ root@machine$> BIN_PATH=./basic_nim_static ./namespace_nim AAAA
       "pid": 21836,
       "uid": 0,
       "cwd": "/path/to/",
-      "binary": "/path/to/namespace_nim",
+      "binary": "/path/to/fake_root",
       "arguments": "AAAA",
       "flags": "execve clone",
       "start_time": "2022-07-05T03:13:04.510Z",
@@ -68,5 +68,5 @@ root@machine$> BIN_PATH=./basic_nim_static ./namespace_nim AAAA
 }
 ```
 
-Without any namespace information, it does appear that `/bin/bash` was the program run,
+Without any information about the real non-chrooted path, it does appear that `/bin/bash` was the program run,
 which is technically correct, just not the fact the program has changed it's root mid-execution.

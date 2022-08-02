@@ -176,7 +176,7 @@ $> ps aux | grep 1451700
 path     1451722  0.0  0.1 1147824 9648 pts/0    Sl+  14:56   0:00 ./bin/basic_c AAAA
 ```
 
-## [Namespace](namespace)
+## [Chrooter](chrooter)
 This code uses [chroot](https://linux.die.net/man/2/chroot) to mask a binaries real path.
 
 Chroot is a key element of Linux containers that changes the root directory of the calling process.
@@ -202,11 +202,11 @@ copy all required libraries into the `chroot` subfolders.
 
 Example usage:
 ```bash
-root@machine$> BIN_PATH=./basic_nim_static ./namespace_nim AAAA
+root@machine$> BIN_PATH=./basic_nim_static ./chrooter_nim AAAA
   PID     21836
   PPID    21783
   argc    2
-  argv[0] from_namespace
+  argv[0] from_chrooter
   argv[1] AAAA
   Sleeping for 60 seconds so you can lookup the PID
 ```

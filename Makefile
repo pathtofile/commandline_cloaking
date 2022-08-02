@@ -3,7 +3,7 @@ all: all_go all_c
 all_all: all_go all_c all_nim
 all_go: basic_go dodgy_go preload_go loader_go injector_go
 all_c: basic_c dodgy_c preload_c loader_c
-all_nim: basic_nim dodgy_nim loader_nim preload_nim namespace_nim
+all_nim: basic_nim dodgy_nim loader_nim preload_nim chrooter_nim
 
 basic_c:
 	gcc -Wall -o ./bin/basic_c ./basic/c/basic.c
@@ -46,8 +46,8 @@ loader_py:
 loader_nim:
 	nim compile --out:./bin/loader_nim ./loader/nim/loader.nim
 
-namespace_nim:
-	nim compile --out:./bin/namespace_nim ./namespace/nim/namespace.nim
+chrooter_nim:
+	nim compile --out:./bin/chrooter_nim ./chrooter/nim/chrooter.nim
 
 injector_go:
 	$(shell \

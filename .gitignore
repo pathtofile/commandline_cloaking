@@ -3,4 +3,4 @@ bin/*
 .vscode
 
 # Temp dir
-namespace_tmp
+fake_root
