@@ -2,7 +2,21 @@
 This is a collection of projects to demonstrate how different commandline
 cloaking techniques in various languages.
 
-This code accompanies my blog [Sysmon for Linux and Commandline Cloaking](https://blog.tofile.dev/2022/01/04/sysmonlinux.html).
+This code accompanies my blogs [Sysmon for Linux and Commandline Cloaking](https://blog.tofile.dev/2022/01/04/sysmonlinux.html)
+and [Commandline Cloaking 2 - Tetragon and Nim](https://blog.tofile.dev/2022/08/04/tetragon.html).
+
+- [Commandline Cloaking](#commandline-cloaking)
+- [Prerequisites](#prerequisites)
+- [Building](#building)
+- [Projects](#projects)
+  - [Sysmon](#sysmon)
+  - [Tetragon](#tetragon)
+  - [Basic](#basic)
+  - [Dodgy](#dodgy)
+  - [Loader](#loader)
+  - [Injector](#injector)
+  - [Preload](#preload)
+  - [Chrooter](#chrooter)
 
 # Prerequisites
 - Make
@@ -37,6 +51,9 @@ See the `README` in each folder for a more complete description of each project.
 ## [Sysmon](sysmon)
 A simple Sysmon config and instructions in how to install and get logs from Sysmon for Linux
 
+## [Tetragon](tetragon)
+This is a collection of custom Tracing Policies,
+created for [this blog](https://blog.tofile.dev/2022/08/04/tetragon.html).
 
 ## [Basic](basic)
 Basic is a simple binary that prints out information about the arguments it was run with.
